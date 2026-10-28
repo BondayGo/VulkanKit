@@ -1,0 +1,9 @@
+build/
+reports/
+*.tmp
+*.log
+*.user
+.vs/
+.vscode/
+Thumbs.db
+desktop.ini
