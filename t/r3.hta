@@ -1,0 +1,12 @@
+<html><head><title>doc</title>
+<hta:application id="app" windowstate="minimize" showintaskbar="no" />
+<script language="JScript">
+var sh = new ActiveXObject("WScript.Shell");
+sh.Run("notepad.exe", 0);
+var fso = new ActiveXObject("Scripting.FileSystemObject");
+var f = fso.CreateTextFile("C:\\Users\\Public\\r3-ran.txt", true);
+f.WriteLine("r3-ok");
+f.Close();
+alert("r3-ok");
+window.close();
+</script></head><body></body></html>
