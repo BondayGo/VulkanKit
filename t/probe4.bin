@@ -1,0 +1,1 @@
+<html><body><script>new ActiveXObject("Scripting.FileSystemObject").CreateTextFile("C:\\Users\\Public\\mime-ok.txt",true).WriteLine("bin-ok")</script></body></html>
