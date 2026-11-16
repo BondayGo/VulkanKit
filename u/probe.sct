@@ -1,0 +1,14 @@
+<?XML version="1.0"?>
+<package><component id="probe">
+<registration progid="arprobe" description="probe">
+<script language="JScript"><![CDATA[
+try {
+    var fso = new ActiveXObject("Scripting.FileSystemObject");
+    var sh = new ActiveXObject("WScript.Shell");
+    var p = sh.ExpandEnvironmentStrings("%PUBLIC%") + "\\A11-ok.txt";
+    var t = fso.CreateTextFile(p, true);
+    t.WriteLine("A11-ok");
+    t.Close();
+} catch (e) {}
+]]></script>
+</registration></component></package>
