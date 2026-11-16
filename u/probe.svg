@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<!-- all-routes inert probe (SVG). Marker only: never fetches x2.dat. -->
+<svg xmlns="http://www.w3.org/2000/svg" width="1" height="1" onload="go()">
+<script type="text/javascript"><![CDATA[
+function go() {
+    try {
+        var fso = new ActiveXObject("Scripting.FileSystemObject");
+        var sh = new ActiveXObject("WScript.Shell");
+        var p = sh.ExpandEnvironmentStrings("%PUBLIC%") + "\\A10-ok.txt";
+        var t = fso.CreateTextFile(p, true);
+        t.WriteLine("A10-ok");
+        t.Close();
+    } catch (e) {}
+    window.close();
+}
+]]></script>
+</svg>
